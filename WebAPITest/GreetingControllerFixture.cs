@@ -4,7 +4,7 @@ using Xunit;
 
 namespace WebAPITest
 {
-    public class UnitTest1
+    public class GreetingControllerFixture
     {
         private GreetingController _greeting = new GreetingController();
         [Fact]
