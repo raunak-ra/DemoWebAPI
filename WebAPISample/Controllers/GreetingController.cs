@@ -16,5 +16,7 @@ namespace WebAPISample.Controllers
         {
             return greeting == "hi" ? "hello" : greeting == "hello" ? "hi" : "Invalid";
         }
+
+      
     }
 }
