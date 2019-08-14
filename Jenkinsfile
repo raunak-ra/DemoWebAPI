@@ -1,7 +1,6 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'REPO_PATH', defaultValue: 'https://github.com/tavisca-rsingh/DemoWebAPI.git')
         string(name: 'SOLUTION_PATH', defaultValue: 'WebAPISample.sln')
         string(name: 'TEST_PATH', defaultValue: 'WebAPITest/WebAPITest.csproj')
     }
