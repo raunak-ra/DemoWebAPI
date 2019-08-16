@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(name: 'SOLUTION_PATH', defaultValue: 'WebAPISample.sln')
         string(name: 'TEST_PATH', defaultValue: 'WebAPITest/WebAPITest.csproj')
-        choice(name: 'Environment', choices:['Build', 'Test','Build', 'Publish','Both'])
+        choice(name: 'Environment', choices:['Build', 'Test','Publish','Deploy','All'])
     }
     stages {
         stage('Build') {
@@ -11,7 +11,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment== 'Build' || params.Environment == 'Both'
+                   params.Environment== 'Build' || params.Environment == 'All'
                }
             }
             steps {
@@ -24,7 +24,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment== 'Test' || params.Environment == 'Both' 
+                   params.Environment== 'Test'
                }
             }
             steps {
@@ -36,7 +36,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment== 'Publish' 
+                   params.Environment== 'Publish' || params.Environment == 'All'
                }
             }
             steps {
@@ -48,7 +48,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment== 'Deploy' 
+                   params.Environment== 'Deploy' || params.Environment == 'All'
                }
             }
             steps {
