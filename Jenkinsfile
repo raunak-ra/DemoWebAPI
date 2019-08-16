@@ -24,11 +24,36 @@ pipeline {
             {
                expression
                {
-                   params.Environment== 'Test' || params.Environment == 'Both'
+                   params.Environment== 'Test' || params.Environment == 'Build' || params.Environment == 'Publish'
+                   || params.Environment == 'Deploy'
                }
             }
             steps {
                 sh'dotnet test ${TEST_PATH}'
+            }
+        }
+        stage('Publish') {
+             when
+            {
+               expression
+               {
+                   params.Environment== 'Publish' 
+               }
+            }
+            steps {
+                sh'dotnet publish ${SOLUTION_PATH}'
+            }
+        }
+         stage('Deploy') {
+             when
+            {
+               expression
+               {
+                   params.Environment== 'Deploy' 
+               }
+            }
+            steps {
+                sh'dotnet WebAPISample/bin/Release/netcoreapp2.2/WebAPISample.dll'
             }
         }
     }
