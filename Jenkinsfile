@@ -54,7 +54,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment == 'Push'
+                   params.Environment == 'Deploy'
                }
             }
             
