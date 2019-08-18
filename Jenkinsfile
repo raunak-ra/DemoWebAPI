@@ -9,7 +9,7 @@ pipeline {
                 string(name: 'DOCKERHUB_USERNAME', defaultValue: 'raunakrs')
                 string(name: 'DOCKERHUB_PASSWORD')
                 string(name: 'DOCKER_REPO_NAME', defaultValue: 'samplewebapi')
-                choice(name: 'Environment', choices:['Build', 'Deploy','Push'])
+                choice(name: 'Environment', choices:['Build', 'Deploy'])
 
             }
  
@@ -19,7 +19,7 @@ pipeline {
             {
                expression
                {
-                   params.Environment == 'Build' || params.Environment == 'Deploy' || params.Environment == 'Push'
+                   params.Environment == 'Build' || params.Environment == 'Deploy'
                }
             }
             steps {
@@ -49,26 +49,7 @@ pipeline {
 			    }
 			}
 				
-		stage('Deploy') {
-			 when
-            {
-               expression
-               {
-                   params.Environment == 'Deploy'
-               }
-            }
-
-            steps {
-                bat '''
-				echo "----------------------------Deploy Started-----------------------------"
-				docker run -p %PORT_NO%:80 pipe
-				echo "Listening on %PORT_NO%"
-				echo "----------------------------Deploy Completed-----------------------------"
-				
-				'''
-            }
-        }
-        stage('Push') {
+        stage('Deploy') {
         	 when
             {
                expression
