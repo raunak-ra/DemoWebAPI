@@ -11,6 +11,12 @@ namespace WebAPISample.Controllers
     [ApiController]
     public class GreetingController : ControllerBase
     {
+        [HttpGet]
+        public ActionResult<string> Get()
+        {
+            return "Working....";
+        }
+
         [HttpGet("{greeting}")]
         public ActionResult<string> Get(string greeting)
         {
