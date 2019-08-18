@@ -6,10 +6,10 @@ pipeline {
 		string(name: 'SOLUTION_TEST_PATH', defaultValue: 'WebAPITest/WebAPITest.csproj')
 		string(name: 'PROJECT_NAME', defaultValue: 'DemoWebAPI')
 		string(name: 'PORT_NO', defaultValue: '4555')
-        string(name: 'DOCKERHUB_USERNAME', defaultValue: 'raunakrs')
-        string(name: 'DOCKERHUB_PASSWORD')
-        string(name: 'DOCKER_REPO_NAME', defaultValue: 'samplewebapi')
-        choice(name: 'Environment', choices:['Build', 'Deploy','Push'])
+                string(name: 'DOCKERHUB_USERNAME', defaultValue: 'raunakrs')
+                string(name: 'DOCKERHUB_PASSWORD')
+                string(name: 'DOCKER_REPO_NAME', defaultValue: 'samplewebapi')
+                choice(name: 'Environment', choices:['Build', 'Deploy','Push'])
 
             }
  
@@ -42,7 +42,7 @@ pipeline {
 
 				
 				echo "----------------------------Docker Image Started-----------------------------"
-				docker build --tag=pipe --build-arg project_name=%PROJECT_NAME%.dll .
+				docker build --tag=%DOCKERHUB_USERNAME%/%DOCKER_REPO_NAME% --build-arg project_name=%PROJECT_NAME%.dll .
 				echo "----------------------------Docker Image Completed-----------------------------"
 
 				'''
@@ -81,6 +81,7 @@ pipeline {
                 bat '''
 				echo "----------------------------Push Started-----------------------------"
 				docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%
+                                
 				docker push %DOCKERHUB_USERNAME%/%DOCKER_REPO_NAME%:latest
 				echo "----------------------------Push Completed-----------------------------"
 				
