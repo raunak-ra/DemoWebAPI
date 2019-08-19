@@ -9,7 +9,7 @@ pipeline {
                 string(name: 'DOCKERHUB_USERNAME', defaultValue: 'raunakrs')
                 string(name: 'DOCKERHUB_PASSWORD')
                 string(name: 'DOCKER_REPO_NAME', defaultValue: 'samplewebapi')
-                string(name: 'SONAR_SCANNER_MSBUILD_PATH', defaultValue: ' C:\Users\rsingh\Desktop\sonar-scanner-msbuild-4.6.2.2108-netcoreapp2.0\SonarScanner.MSBuild.dll')
+                string(name: 'SONAR_SCANNER_MSBUILD_PATH', defaultValue: ' C:/Users/rsingh/Desktop/sonar-scanner-msbuild-4.6.2.2108-netcoreapp2.0/SonarScanner.MSBuild.dll')
                 string(name: 'SONARQUBE_PROJECT', defaultValue: 'web_api')
                 string(name: 'SONARQUBE_TOKEN', defaultValue: '8c01a0ab64ff1e67621cdffcc852376391dbee78')
                 choice(name: 'Environment', choices:['Build', 'Deploy'])
